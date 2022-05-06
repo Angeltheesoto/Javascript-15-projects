@@ -216,6 +216,7 @@ Modal
   display: grid;
   place-items: center;
   transition: var(--transition);
+  /* important */
   visibility: hidden;
   z-index: -10;
 }
@@ -224,6 +225,7 @@ Modal
   visibility: visible;
   z-index: 10;
 }
+    /* important */
 .modal-container {
   background: var(--clr-white);
   border-radius: var(--radius);
