@@ -71,4 +71,121 @@ const menu = [
     img: "./images/item-9.jpeg",
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
+  {
+    id: 10,
+    title: "steak dinner",
+    category: "dinner",
+    price: 39.99,
+    img: "./images/item-10.jpeg",
+    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+  },
 ];
+
+// establishing a variable from the DOM
+const sectionCenter = document.querySelector('.section-center');
+const btnContainer = document.querySelector(".btn-container");
+
+
+// this runs as soon as the window opens and we then pass in the function and pass in our array as a parameter
+
+// Load items
+window.addEventListener('DOMContentLoaded', () => {
+  displayMenuItems(menu)
+  displayMenuButtons();
+  
+});
+
+
+
+// This funtion runs a loop over these specific items and returns a duplicate style of each menu item.
+function displayMenuItems(menuItems){
+let displayMenu = menuItems.map( (item) => {
+    return `<article class="menu-item">
+        <img src=${item.img} class="photo" alt=${item.title}>
+        <div class="item-info">
+          <header>
+            <h4>${item.title}</h4>
+            <h4 class="price">$${item.price}</h4>
+          </header>
+            <p class="item-text">${item.desc}</p>
+        </div>
+      </article>`;
+  });
+  displayMenu = displayMenu.join('') // gets rid of the commas
+  sectionCenter.innerHTML = displayMenu;
+  // console.log(displayMenu)
+}
+
+function displayMenuButtons(){
+  const catergories = menu.reduce((values, item) =>{
+    if(!values.includes(item.category)){
+      values.push(item.category)
+    }
+    return values
+  },['all'])
+  const catergoryBtns = catergories.map((category) => {
+    return `<button class="filter-btn" type="button" data-id="${category}">${category}</button>`
+  }).join('');
+  btnContainer.innerHTML = catergoryBtns;
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  // filter items
+filterBtns.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    const category = e.currentTarget.dataset.id;
+    const menuCategory = menu.filter((menuItem) =>{
+      if(menuItem.category === category) {
+        return menuItem
+      }
+    })
+    if(category === 'all'){
+      displayMenuItems(menu)
+    } else {
+      displayMenuItems(menuCategory);
+    }
+  })
+});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

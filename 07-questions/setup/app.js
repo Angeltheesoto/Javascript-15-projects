@@ -1,5 +1,7 @@
 //using selectors inside the element
 
+
+07
 const questions = document.querySelectorAll('.question');
 
 questions.forEach(function(question){
